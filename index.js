@@ -4,7 +4,7 @@ const Employee = require('./lib/Employee.js');
 const { Manager, addMngr } = require('./lib/Manager.js');
 const { Engineer, addEngi } = require('./lib/Engineer.js');
 const { Intern, addIntern} = require('./lib/Intern.js');
-const { teamGen, } = require('./page-template.js');
+const teamGen = require('./page-template.js');
 
 var teamArr = [];
 
@@ -34,7 +34,6 @@ function nextQuestion(next) {
                     answers.github,
                 )
                 teamArr.push(projEngi)
-
                 nextQuestion(answers.next)
             });
             break;
@@ -52,15 +51,19 @@ function nextQuestion(next) {
             });
             break;
         case 'No - Finish Setup':
-            console.log(teamArr);
-            // run generateTeam() to create the team array.
-            // use fs.write to generate HTML with the return of the 'team' module export.
+            console.log(teamArr)
+            generateTeam(teamArr)
             break;
     }
 }
 
-generateTeam() {
-
+function generateTeam(teamData) {
+    var teamHtml = teamGen(teamData)
+    fs.writeFile('team-page.html', teamHtml, (err) => {
+        if (err) {
+            console.log(err)
+        }
+    })
 }
 
 init();
