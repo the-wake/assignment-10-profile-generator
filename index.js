@@ -1,47 +1,52 @@
 const inquirer = require('inquirer');
-const Employee = require('./lib/Employee.js')
-const Manager = require('./lib/Manager.js')
-const Engineer = require('./lib/Engineer.js')
-const Intern = require('./lib/Intern.js')
+const fs = require('fs');
+const Employee = require('./lib/Employee.js');
+const { Manager, addMngr } = require('./lib/Manager.js');
+const { Engineer, addEngi } = require('./lib/Engineer.js');
+const { Intern, addIntern} = require('./lib/Intern.js');
+const generator = require('./page-template.js');
+
+var teamArr = [];
 
 function init() {
-    Manager.addMngr()
+    addMngr()
     .then((answers) => {
-        console.log(answers);
-        // Can destructure this
-        let projManager = new Manager.Manager (
+        let projManager = new Manager (
             answers.name,
             answers.id,
             answers.email,
             answers.office,
         )
-        console.log(projManager);
+        teamArr.push(projManager);
         switch (answers.next) {
             case 'Engineer':
-                Engineer.addEngi()
+                addEngi()
                 .then((answers) => {
-                    let projEngi = new Engineer.Engineer (
+                    let projEngi = new Engineer (
                         answers.name,
                         answers.id,
                         answers.email,
-                        answers.gitHub,
+                        answers.github,
                     )
-                    console.log(projEngi)
+                    teamArr.push(projEngi)
                 });
                 break;
             case 'Intern':
-                Intern.addIntern()
+                addIntern()
                 .then((answers) => {
-                    let projIntern = new Intern.Intern (
+                    let projIntern = new Intern (
                         answers.name,
                         answers.id,
                         answers.email,
-                        answers.gitHub,
+                        answers.github,
                     )
-                    console.log(projIntern);
+                    teamArr.push(projIntern);
                 });
                 break;
             case 'No - Finish Setup':
+                console.log(teamArr);
+                // run generateTeam() to create the team object.
+                // use fs.write to generate HTML with the return of the 'team' module export.
                 break;
         }
     })

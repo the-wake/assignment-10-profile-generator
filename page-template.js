@@ -1,3 +1,7 @@
+const hi = () => {
+    return 'Hello from page-template.js.'
+}
+
 // create the team
 const generateTeam = team => {
 
