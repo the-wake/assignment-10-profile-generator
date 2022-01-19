@@ -1,10 +1,10 @@
-const inquirer = require('inquirer');
 const fs = require('fs');
+const inquirer = require('inquirer');
 const Employee = require('./lib/Employee.js');
 const { Manager, addMngr } = require('./lib/Manager.js');
 const { Engineer, addEngi } = require('./lib/Engineer.js');
 const { Intern, addIntern} = require('./lib/Intern.js');
-const generator = require('./page-template.js');
+const { teamGen, } = require('./page-template.js');
 
 var teamArr = [];
 
@@ -18,38 +18,49 @@ function init() {
             answers.office,
         )
         teamArr.push(projManager);
-        switch (answers.next) {
-            case 'Engineer':
-                addEngi()
-                .then((answers) => {
-                    let projEngi = new Engineer (
-                        answers.name,
-                        answers.id,
-                        answers.email,
-                        answers.github,
-                    )
-                    teamArr.push(projEngi)
-                });
-                break;
-            case 'Intern':
-                addIntern()
-                .then((answers) => {
-                    let projIntern = new Intern (
-                        answers.name,
-                        answers.id,
-                        answers.email,
-                        answers.github,
-                    )
-                    teamArr.push(projIntern);
-                });
-                break;
-            case 'No - Finish Setup':
-                console.log(teamArr);
-                // run generateTeam() to create the team object.
-                // use fs.write to generate HTML with the return of the 'team' module export.
-                break;
-        }
+        nextQuestion(answers.next);
     })
+}
+
+function nextQuestion(next) {
+    switch (next) {
+        case 'Engineer':
+            addEngi()
+            .then((answers) => {
+                let projEngi = new Engineer (
+                    answers.name,
+                    answers.id,
+                    answers.email,
+                    answers.github,
+                )
+                teamArr.push(projEngi)
+
+                nextQuestion(answers.next)
+            });
+            break;
+        case 'Intern':
+            addIntern()
+            .then((answers) => {
+                let projIntern = new Intern (
+                    answers.name,
+                    answers.id,
+                    answers.email,
+                    answers.school,
+                )
+                teamArr.push(projIntern)
+                nextQuestion(answers.next)
+            });
+            break;
+        case 'No - Finish Setup':
+            console.log(teamArr);
+            // run generateTeam() to create the team array.
+            // use fs.write to generate HTML with the return of the 'team' module export.
+            break;
+    }
+}
+
+generateTeam() {
+
 }
 
 init();
