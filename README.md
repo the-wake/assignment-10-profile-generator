@@ -21,7 +21,7 @@ At the end of each entry, the user will be asked if they wish to add another tea
 
 Once the user is finished, the script will use the *fs.writeFile* method to render an HTML file with the collected data in the /dist directory. The HTML file will link to a CSS sheet in the same directory.
 
-[Click for a video demonstrating usage and functionality.](https://user-images.githubusercontent.com/56139228/149438940-9a0e14c6-b709-408e-acaf-f29f2ab3586c.mp4)
+[Click for a video demonstrating usage and functionality.](https://user-images.githubusercontent.com/56139228/150442241-aa7a447e-867e-4bbe-bb45-37f397bebfd2.mp4)
 
 ## Tools Used
 * JavaScript
