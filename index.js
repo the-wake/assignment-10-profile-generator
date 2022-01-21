@@ -59,7 +59,7 @@ function nextQuestion(next) {
 
 function generateTeam(teamData) {
     var teamHtml = teamGen(teamData)
-    fs.writeFile('team-page.html', teamHtml, (err) => {
+    fs.writeFile('./dist/team-page.html', teamHtml, (err) => {
         if (err) {
             console.log(err)
         }
