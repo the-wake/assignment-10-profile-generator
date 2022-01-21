@@ -1,16 +1,16 @@
 # Team Profile Generator
 
 ## Description
-This is a back-end team profile generator run via the command line.
+This is a back-end team profile generator run with Node.
 
 ## Installation
-This application requires both fs and inquirer. To install, run the following in the command line:
+This application requires both first-party (fs) and third-party (Inquirer) Node packages, along with Jest for testing. Once you've downloaded the application, run the following in the command line to install dependencies:
 ```
 npm i
 ```
 
 ## Usage
-To use the team profile generator, install Node. Then open the application's parent directory in the terminal and run:
+To use the team profile generator, open the application's parent directory in the terminal and run:
 ```
 node index.js
 ```
@@ -35,4 +35,6 @@ Once the user is finished, the script will use the *fs.writeFile* method to rend
 * Coded in VS Code
 
 ## Future Functionality
-* Fill later
+* We could allow for multiple files with different names to be created, to create a catalog of teams.
+* We could create append functions to allow for more individuals to be added to a team later.
+* We could let the user input additional information, such as project name and desired file name.
