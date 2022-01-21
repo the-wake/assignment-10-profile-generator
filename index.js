@@ -51,6 +51,10 @@ function nextQuestion(next) {
             });
             break;
         case 'No - Finish Setup':
+            console.log(`
+**Team Generated**\n
+------------------------------------------------------\n
+            `)
             console.log(teamArr)
             generateTeam(teamArr)
             break;

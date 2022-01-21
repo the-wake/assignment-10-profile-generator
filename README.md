@@ -1,7 +1,8 @@
 # Team Profile Generator
 
 ## Description
-This is a back-end team profile generator run with Node.
+This is a back-end team profile generator run with Node.  
+[Click for an example of the HTML file output by the program.](./example-page.html)
 
 ## Installation
 This application requires both first-party (fs) and third-party (Inquirer) Node packages, along with Jest for testing. Once you've downloaded the application, run the following in the command line to install dependencies:
